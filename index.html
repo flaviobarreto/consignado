@@ -72,9 +72,9 @@
                         <img src="https://img.icons8.com/color/48/000000/money.png" alt="Money">
                     </div>
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Simulação FGTS</h3>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Simulação INSS</h3>
                         <div class="mt-2">
-                            <p class="text-sm text-gray-500">Preencha os dados abaixo para calcular o seu FGTS.</p>
+                            <p class="text-sm text-gray-500">Preencha os dados abaixo para calcular o seu INSS.</p>
                             <form id="fgtsForm">
                                 <div class="mt-4">
                                     <label for="nome" class="block text-sm font-medium text-gray-700">Nome</label>
@@ -85,7 +85,7 @@
                                     <input type="text" name="cpf" id="cpf" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 </div>
                                 <div class="mt-4">
-                                    <label for="valor" class="block text-sm font-medium text-gray-700">Valor do FGTS (R$)</label>
+                                    <label for="valor" class="block text-sm font-medium text-gray-700">Valor do INSS (R$)</label>
                                     <input type="text" name="valor" id="valor" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="0,00" oninput="formatCurrency(this)">
                                 </div>
                             </form>
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="calcularFgts()">Calcular</button>
+                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="calcularInss()">Calcular</button>
                 <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm" onclick="closeModal()">Cancelar</button>
             </div>
         </div>
@@ -114,7 +114,7 @@
             </p>
             <!-- Botão -->
             <button class="bg-green-500 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-green-600 transition duration-300 transform hover:scale-105" onclick="openModal()">
-                Simular FGTS
+                Simular INSS
             </button>
         </div>
     </div>
@@ -129,7 +129,7 @@
                 <div class="text-4xl mb-4 text-blue-500">💸</div>
                 <h2 class="text-2xl font-bold mb-4">Taxas Competitivas</h2>
                 <p class="text-gray-700 mb-4">Oferecemos as melhores taxas do mercado para você economizar. Aproveite as melhores condições para o seu crédito!</p>
-                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300" onclick="openModal()">Simular FGTS</button>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300" onclick="openModal()">Simular INSS</button>
             </div>
             
             <!-- Aprovação Rápida -->
@@ -137,7 +137,7 @@
                 <div class="text-4xl mb-4 text-green-500">⚡</div>
                 <h2 class="text-2xl font-bold mb-4">Aprovação Rápida</h2>
                 <p class="text-gray-700 mb-4">Processo de aprovação simples e rápido para sua conveniência. Conquiste seu crédito sem demora!</p>
-                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300" onclick="openModal()">Simular FGTS</button>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300" onclick="openModal()">Simular INSS</button>
             </div>
             
             <!-- Atendimento Personalizado -->
@@ -145,7 +145,7 @@
                 <div class="text-4xl mb-4 text-orange-500">🤝</div>
                 <h2 class="text-2xl font-bold mb-4">Atendimento Personalizado</h2>
                 <p class="text-gray-700 mb-4">Nossa equipe está pronta para oferecer o melhor atendimento para você. Conte com a nossa ajuda em cada etapa!</p>
-                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300" onclick="openModal()">Simular FGTS</button>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300" onclick="openModal()">Simular INSS</button>
             </div>
         </div>
     </div>
@@ -223,24 +223,25 @@
           </ul>
         </div>
         
-        <!-- Seção FGTS -->
-        <div>
-          <h3 class="text-xl font-bold mb-4">FGTS</h3>
-          <ul class="space-y-2">
-            <li>
-              <h4 class="font-semibold">O que é?</h4>
-              <p>O Fundo de Garantia do Tempo de Serviço (FGTS) é um direito do trabalhador brasileiro que consiste em um depósito mensal realizado pelo empregador.</p>
-            </li>
-            <li>
-              <h4 class="font-semibold">Como usar?</h4>
-              <p>Pode ser utilizado para compra de imóvel, financiamento, e em situações de demissão sem justa causa.</p>
-            </li>
-            <li>
-              <h4 class="font-semibold">Consultas e saques</h4>
-              <p>Consulte seu saldo e realize saques através do site da Caixa Econômica Federal ou pelo aplicativo FGTS.</p>
-            </li>
-          </ul>
-        </div>
+<!-- Seção INSS -->
+<div>
+    <h3 class="text-xl font-bold mb-4">INSS</h3>
+    <ul class="space-y-2">
+      <li>
+        <h4 class="font-semibold">O que é?</h4>
+        <p>O Instituto Nacional do Seguro Social (INSS) é o órgão responsável pela previdência social no Brasil, garantindo benefícios como aposentadoria, pensão e auxílio-doença para os trabalhadores.</p>
+      </li>
+      <li>
+        <h4 class="font-semibold">Como usar?</h4>
+        <p>Os benefícios do INSS podem ser utilizados para aposentadoria, pensão por morte, auxílio-doença, entre outros, dependendo da contribuição e situação do segurado.</p>
+      </li>
+      <li>
+        <h4 class="font-semibold">Consultas e saques</h4>
+        <p>Consulte seus benefícios e informações através do site oficial do INSS ou pelo aplicativo Meu INSS.</p>
+      </li>
+    </ul>
+  </div>
+  
 
         <!-- Seção Benefícios e Dicas -->
       <div>
@@ -324,14 +325,14 @@ function openWhatsApp() {
     closeResultadoModal();
 }
 
-function calcularFgts() {
+function calcularInss() {
     const nome = document.getElementById('nome').value;
     const cpf = document.getElementById('cpf').value;
     const valor = document.getElementById('valor').value.replace('R$ ', '').replace(',', '.');
     const salarioLiquido = parseFloat(valor.replace('R$ ', '').replace(',', '.'));
 
-    const parcela = (salarioLiquido / 0.35) /100;
-    const valorLiberado = (parcela / 0.02315)/100;
+    const parcela = (salarioLiquido * 0.035);
+    const valorLiberado = parcela / 0.02315;
 
     // Format the result
     const formatCurrency = new Intl.NumberFormat('pt-BR', {
@@ -339,7 +340,7 @@ function calcularFgts() {
         currency: 'BRL'
     });
 
-    const resultadoTexto = `Nome: ${nome}\nCPF: ${cpf}\nParcela: ${formatCurrency.format(parcela.toFixed(2))}\nValor liberado de FGTS: ${formatCurrency.format(valorLiberado.toFixed(2))}`;
+    const resultadoTexto = `Nome: ${nome}\nSalario: ${formatCurrency.format(salarioLiquido.toFixed(2))}\nCPF: ${cpf}\nParcela: ${formatCurrency.format(parcela.toFixed(2))}\nValor liberado de FGTS: ${formatCurrency.format(valorLiberado.toFixed(2))}`;
 
     // Display result in the result modal
     document.getElementById('resultado-content').innerText = resultadoTexto;
