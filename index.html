@@ -315,8 +315,8 @@ function openWhatsApp() {
         currency: 'BRL'
     });
 
-    const resultado = `Valor liberado de FGTS: ${formatCurrency.format(valorLiberado.toFixed(2))}`;
-    const message = `Olá, gostaria de simular meu FGTS.\nNome: ${nome}\nCPF: ${cpf}\nValor: ${formatCurrency.format(valorLiberado.toFixed(2))}`;
+    const resultado = `Valor liberado de INSS: ${formatCurrency.format(valorLiberado.toFixed(2))}`;
+    const message = `Olá, gostaria de simular meu INSS. Nome: ${nome}\nSalario: ${formatCurrency.format(salarioLiquido.toFixed(2))}\nCPF: ${cpf}\nParcela: ${formatCurrency.format(parcela.toFixed(2))}\nValor liberado de FGTS: ${formatCurrency.format(valorLiberado.toFixed(2))}`;
 
     // Open WhatsApp
     window.open(`https://wa.me/11987018181?text=${encodeURIComponent(message)}`, '_blank');
