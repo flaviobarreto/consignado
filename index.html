@@ -306,7 +306,7 @@ function openWhatsApp() {
     const valor = document.getElementById('valor').value.replace('R$ ', '').replace(',', '.');
     const salarioLiquido = parseFloat(valor.replace('R$ ', '').replace(',', '.'));
 
-    const parcela = salarioLiquido / 0.35;
+    const parcela = salarioLiquido * 0.35;
     const valorLiberado = parcela / 0.02315;
 
     // Format the result
