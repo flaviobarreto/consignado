@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao Consignado</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-custom {
+            background-color: rgb(81 ,77 ,143);
+        }
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            border-radius: 50%;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/+5511987018181" class="whatsapp-btn" target="_blank">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp">
+</a>
+
+<!-- Modal -->
+<div id="fgtsModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen px-4 text-center">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                        <img src="https://img.icons8.com/color/48/000000/money.png" alt="Money">
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Simulação FGTS</h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">Preencha os dados abaixo para calcular o seu FGTS.</p>
+                            <form id="fgtsForm">
+                                <div class="mt-4">
+                                    <label for="nome" class="block text-sm font-medium text-gray-700">Nome</label>
+                                    <input type="text" name="nome" id="nome" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                                <div class="mt-4">
+                                    <label for="cpf" class="block text-sm font-medium text-gray-700">CPF</label>
+                                    <input type="text" name="cpf" id="cpf" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                                <div class="mt-4">
+                                    <label for="valor" class="block text-sm font-medium text-gray-700">Valor do FGTS</label>
+                                    <input type="text" name="valor" id="valor" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="calcularFgts()">Calcular</button>
+                <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm" onclick="closeModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="bg-[#4C4848] text-black py-20">
+    <div class="container mx-auto px-6 lg:px-20">
+        <div class="text-center">
+            <!-- Título -->
+            <h1 class="text-4xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                💰 Bem-vindo ao <span class="text-yellow-400">Consignado</span>
+            </h1>
+            <!-- Subtítulo -->
+            <p class="text-lg lg:text-2xl mb-8">
+                Seu parceiro confiável para <span class="font-semibold">empréstimos consignados</span>.
+            </p>
+            <!-- Botão -->
+            <button class="bg-green-500 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-green-600 transition duration-300 transform hover:scale-105" onclick="openModal()">
+                Simular FGTS
+            </button>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6 lg:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Taxas Competitivas -->
+            <div class="bg-[#ffffff] p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl mb-4 text-blue-500">💸</div>
+                <h2 class="text-2xl font-bold mb-4">Taxas Competitivas</h2>
+                <p class="text-gray-700 mb-4">Oferecemos as melhores taxas do mercado para você economizar. Aproveite as melhores condições para o seu crédito!</p>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300" onclick="openModal()">Simular FGTS</button>
+            </div>
+            
+            <!-- Aprovação Rápida -->
+            <div class="bg-[#ffffff] p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl mb-4 text-green-500">⚡</div>
+                <h2 class="text-2xl font-bold mb-4">Aprovação Rápida</h2>
+                <p class="text-gray-700 mb-4">Processo de aprovação simples e rápido para sua conveniência. Conquiste seu crédito sem demora!</p>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300" onclick="openModal()">Simular FGTS</button>
+            </div>
+            
+            <!-- Atendimento Personalizado -->
+            <div class="bg-[#ffffff] p-6 rounded-lg shadow-lg text-center">
+                <div class="text-4xl mb-4 text-orange-500">🤝</div>
+                <h2 class="text-2xl font-bold mb-4">Atendimento Personalizado</h2>
+                <p class="text-gray-700 mb-4">Nossa equipe está pronta para oferecer o melhor atendimento para você. Conte com a nossa ajuda em cada etapa!</p>
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300" onclick="openModal()">Simular FGTS</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="bg-blue-900 text-white py-10 px-5" style="background-color: rgb(63 73 102);">
+    <div class="container mx-auto px-6 lg:px-20 text-center">
+        <h2 class="text-3xl font-bold mb-6">Como Funciona</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div>
+                <h3 class="text-xl font-bold mb-2">1. Solicitação</h3>
+                <p class="text-white-700">Preencha o formulário de solicitação online com seus dados.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-2">2. Análise</h3>
+                <p class="text-white-700">Nossa equipe analisará sua solicitação e retornará rapidamente.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-2">3. Aprovação</h3>
+                <p class="text-white-700">Após aprovação, o valor será depositado em sua conta.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-gray-200">
+    <div class="text-center mb-8">
+      <br/>
+      <br/>
+      <h1 class="text-2xl md:text-3xl font-semibold">Quando o assunto é dinheiro, <mark class="bg-yellow-300 text-blue-900 px-1">você precisa de agilidade e segurança.</mark></h1>
+    </div>
+    <div class="flex flex-col md:flex-row md:justify-around space-y-6 md:space-y-0">
+      <div class="flex items-center space-x-4">
+        <div class="text-4xl">
+          📱
+        </div>
+        <p class="text-lg font-medium">Contratação <mark class="bg-yellow-300 text-blue-900 px-1">sem sair de casa</mark>.</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="text-4xl">
+          💸
+        </div>
+        <p class="text-lg font-medium"><mark class="bg-yellow-300 text-blue-900 px-1">Melhores taxas</mark> do mercado.</p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="text-4xl">
+          🏡
+        </div>
+        <p class="text-lg font-medium">Tudo para sua <mark class="bg-yellow-300 text-blue-900 px-1">segurança e conforto</mark>.</p>
+      </div>
+    </div>
+  </section>
+  
+  
+  <footer class="bg-[#181b42] text-black py-10 px-5">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Seção Consignado -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Consignado</h3>
+          <ul class="space-y-2">
+            <li>
+              <h4 class="font-semibold">O que é?</h4>
+              <p>O empréstimo consignado é uma modalidade de crédito onde as parcelas são descontadas diretamente da folha de pagamento ou benefício.</p>
+            </li>
+            <li>
+              <h4 class="font-semibold">Vantagens</h4>
+              <p>Taxas de juros mais baixas, facilidade na contratação e menos burocracia.</p>
+            </li>
+            <li>
+              <h4 class="font-semibold">Quem pode contratar?</h4>
+              <p>Trabalhadores com carteira assinada, pensionistas e aposentados.</p>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Seção FGTS -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">FGTS</h3>
+          <ul class="space-y-2">
+            <li>
+              <h4 class="font-semibold">O que é?</h4>
+              <p>O Fundo de Garantia do Tempo de Serviço (FGTS) é um direito do trabalhador brasileiro que consiste em um depósito mensal realizado pelo empregador.</p>
+            </li>
+            <li>
+              <h4 class="font-semibold">Como usar?</h4>
+              <p>Pode ser utilizado para compra de imóvel, financiamento, e em situações de demissão sem justa causa.</p>
+            </li>
+            <li>
+              <h4 class="font-semibold">Consultas e saques</h4>
+              <p>Consulte seu saldo e realize saques através do site da Caixa Econômica Federal ou pelo aplicativo FGTS.</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Seção Benefícios e Dicas -->
+      <div>
+        <h3 class="text-xl font-bold mb-4">Benefícios e Dicas</h3>
+        <ul class="space-y-4">
+          <li>
+            <h4 class="font-semibold">Planejamento Financeiro</h4>
+            <p>Utilizar o crédito consignado e o FGTS com planejamento pode ajudar a alcançar objetivos financeiros com mais segurança e menos impacto no orçamento.</p>
+          </li>
+          <li>
+            <h4 class="font-semibold">Negociação</h4>
+            <p>Negocie sempre as melhores condições de crédito com instituições financeiras para garantir as melhores taxas e condições para o seu perfil.</p>
+          </li>
+          <li>
+            <h4 class="font-semibold">Acompanhamento</h4>
+            <p>Faça o acompanhamento regular do seu FGTS e dos pagamentos de empréstimos consignados para evitar surpresas e manter seu orçamento sob controle.</p>
+          </li>
+        </ul>
+      </div>
+    
+      </div>
+    </div>
+    
+    <div class="text-center mt-8">
+      <p>&copy; 2024 Consignado. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  
+  
+
+<script>
+function openModal() {
+    document.getElementById('fgtsModal').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('fgtsModal').classList.add('hidden');
+}
+
+function calcularFgts() {
+    // Aqui você faria a lógica de cálculo do FGTS
+    const nome = document.getElementById('nome').value;
+    const cpf = document.getElementById('cpf').value;
+    const valor = document.getElementById('valor').value;
+
+    // Para simplificação, vamos apenas mostrar um alerta com os dados
+    alert(`Nome: ${nome}\nCPF: ${cpf}\nValor: ${valor}`);
+
+    // Lógica de cálculo e exibição do resultado pode ser adicionada aqui
+
+    // Fechar modal após cálculo
+    closeModal();
+
+    // Opcional: abrir WhatsApp após cálculo
+    const whatsappNumber = "11987018181";
+    const message = `Olá, gostaria de simular meu FGTS.\nNome: ${nome}\nCPF: ${cpf}\nValor: ${valor}`;
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+}
+</script>
+
+</body>
+</html>
